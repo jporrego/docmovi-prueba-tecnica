@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { regiones } from "./regiones";
 
@@ -6,12 +6,31 @@ const Form = () => {
     const {
         register,
         handleSubmit,
-        watch,
+        resetField,
         formState: { errors },
     } = useForm();
     const onSubmit = (data) => console.log(data);
 
-    console.log(watch("example")); // watch input value by passing the name of it
+    const [region, setRegion] = useState("Arica y Parinacota");
+
+    const sortRegiones = () => {
+        let sortedReg = regiones.sort((a, b) =>
+            a.region.localeCompare(b.region)
+        );
+
+        return sortedReg;
+    };
+
+    const sortComunas = () => {
+        let comunas = regiones.find((reg) => reg.region === region).comunas;
+        comunas.sort((a, b) => a.localeCompare(b));
+
+        return comunas.map((comuna) => (
+            <option value={comuna} key={comuna}>
+                {comuna}
+            </option>
+        ));
+    };
 
     return (
         /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
@@ -73,26 +92,30 @@ const Form = () => {
 
             <div className="flex flex-col gap-1 font-medium">
                 <label htmlFor="region">Región </label>
-                <select name="region">
-                    {regiones.map((reg) => (
+                <select
+                    {...register("region")}
+                    value={region}
+                    onChange={(e) => {
+                        resetField("comuna");
+                        return setRegion(e.target.value);
+                    }}
+                >
+                    {sortRegiones().map((reg) => (
                         <option value={reg.region} key={reg.region}>
                             {reg.region}
                         </option>
                     ))}
                 </select>
-                {errors.region && <span>Debe ingresar un código postal</span>}
+                {errors.region && <span>Debe seleccionar una region</span>}
             </div>
 
             <div className="flex flex-col gap-1 font-medium">
                 <label htmlFor="comuna">Comuna </label>
-                <select name="comuna">
-                    {regiones.map((reg) => (
-                        <option value={reg.region} key={reg.region}>
-                            {reg.region}
-                        </option>
-                    ))}
+
+                <select {...register("comuna", { required: true })}>
+                    {sortComunas()}
                 </select>
-                {errors.region && <span>Debe ingresar un código postal</span>}
+                {errors.comuna && <span>Debe seleccionar una comuna</span>}
             </div>
 
             {/* errors will return when field validation fails  */}
