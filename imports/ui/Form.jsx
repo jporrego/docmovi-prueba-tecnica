@@ -50,7 +50,7 @@ const Form = () => {
                 </label>
                 <input
                     {...register("nombres", { required: true })}
-                    className="w-90 px-3 py-1 bg-slate-100 rounded-md outline outline-2 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
+                    className="w-90 px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
                 />
                 {errors.nombres && (
                     <span className="absolute top-0 right-0 text-red-500">
@@ -65,7 +65,7 @@ const Form = () => {
                 </label>
                 <input
                     {...register("apellidoPaterno", { required: true })}
-                    className="w-90 px-3 py-1 bg-slate-100 rounded-md outline outline-2 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
+                    className="w-90 px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
                 />
                 {errors.apellidoPaterno && (
                     <span className="absolute top-0 right-0 text-red-500">
@@ -80,7 +80,7 @@ const Form = () => {
                 </label>
                 <input
                     {...register("apellidoMaterno", { required: true })}
-                    className="w-90 px-3 py-1 bg-slate-100 rounded-md outline outline-2 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
+                    className="w-90 px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
                 />
                 {errors.apellidoMaterno && (
                     <span className="absolute top-0 right-0 text-red-500">
@@ -95,7 +95,7 @@ const Form = () => {
                 </label>
                 <input
                     {...register("rut", { required: true })}
-                    className="w-90 px-3 py-1 bg-slate-100 rounded-md outline outline-2 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
+                    className="w-90 px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
                 />
                 {errors.rut && (
                     <span className="absolute top-0 right-0 text-red-500">
@@ -111,7 +111,7 @@ const Form = () => {
                 <input
                     type="number"
                     {...register("codigoPostal", { required: true })}
-                    className="w-90 px-3 py-1 bg-slate-100 rounded-md outline outline-2 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
+                    className="w-90 px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
                 />
                 {errors.codigoPostal && (
                     <span className="absolute top-0 right-0 text-red-500">
@@ -131,7 +131,7 @@ const Form = () => {
                         resetField("comuna");
                         return setRegion(e.target.value);
                     }}
-                    className="w-90 px-3 py-1 bg-slate-100 rounded-md outline outline-2 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
+                    className="w-90 px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
                     autoComplete="new-region"
                 >
                     {sortRegiones().map((reg) => (
@@ -150,7 +150,7 @@ const Form = () => {
 
                 <select
                     {...register("comuna", { required: true })}
-                    className="w-90 px-3 py-1 bg-slate-100 rounded-md outline outline-2 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500 transition ease-in-out"
+                    className="w-90 px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500 transition ease-in-out"
                     autoComplete="new-comuna"
                 >
                     {sortComunas()}
@@ -166,7 +166,7 @@ const Form = () => {
             {errors.exampleRequired && <span>This field is required</span>}
             <input
                 type="submit"
-                className="bg-sky-600 w-fit mx-auto px-4 py-1 rounded-md text-sky-50 font-medium hover:bg-sky-500  cursor-pointer transition duration-100"
+                className="bg-sky-500 w-fit mx-auto px-4 py-1 rounded-md text-sky-50 font-medium hover:bg-sky-500  cursor-pointer transition duration-100"
             />
         </form>
     );
