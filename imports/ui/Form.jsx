@@ -1,6 +1,24 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { regiones } from "./regiones";
+import { validateRut } from "rutlib";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup
+    .object({
+        nombres: yup.string().required(),
+        apellidoPaterno: yup.string().required(),
+        apellidoMaterno: yup.string().required(),
+        rut: yup
+            .string()
+            .required()
+            .test((rut) => validateRut(rut)),
+        codigoPostal: yup.number().required(),
+        region: yup.string().required(),
+        comuna: yup.string().required(),
+    })
+    .required();
 
 const Form = () => {
     const {
@@ -8,8 +26,11 @@ const Form = () => {
         handleSubmit,
         reset,
         resetField,
+        setError,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        resolver: yupResolver(schema),
+    });
 
     const onSubmit = (data) => {
         console.log(data), reset();
