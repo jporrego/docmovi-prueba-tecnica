@@ -1,18 +1,29 @@
 import { Meteor } from "meteor/meteor";
-import { TasksCollection } from "/imports/api/TasksCollection";
+import { PatientsCollection } from "/imports/api/PatientsCollection";
 
-const insertTask = (taskText) => TasksCollection.insert({ text: taskText });
+const insertPatient = (data) =>
+    PatientsCollection.insert({
+        nombres: data.nombres,
+        apellidoPaterno: data.apellidoPaterno,
+        apellidoMaterno: data.apellidoMaterno,
+        rut: data.rut,
+        codigoPostal: data.codigoPostal,
+        region: data.region,
+        comuna: data.comuna,
+    });
 
 Meteor.startup(async () => {
-  if (TasksCollection.find().count() === 0) {
-    [
-      "First Task",
-      "Second Task",
-      "Third Task",
-      "Fourth Task",
-      "Fifth Task",
-      "Sixth Task",
-      "Seventh Task",
-    ].forEach(insertTask);
-  }
+    if (PatientsCollection.find().count() === 0) {
+        [
+            {
+                nombres: "Laura ",
+                apellidoPaterno: "Olmedo",
+                apellidoMaterno: "Verdu",
+                rut: "20649963-k",
+                codigoPostal: 7850000,
+                region: "Región Metropolitana de Santiago",
+                comuna: "La Reina",
+            },
+        ].forEach(insertTask);
+    }
 });

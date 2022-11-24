@@ -5,6 +5,9 @@ import { validateRut } from "rutlib";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import { PatientsCollection } from "/imports/api/PatientsCollection";
+import { useTracker } from "meteor/react-meteor-data";
+
 const schema = yup
     .object({
         nombres: yup.string().required(),
