@@ -24,6 +24,6 @@ Meteor.startup(async () => {
                 region: "Región Metropolitana de Santiago",
                 comuna: "La Reina",
             },
-        ].forEach(insertTask);
+        ].forEach(insertPatient);
     }
 });
