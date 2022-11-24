@@ -57,12 +57,18 @@ const Form = () => {
         ));
     };
 
+    const errorMsg = (msg) => (
+        <span className="absolute top-0 right-0 text-red-500 bg-slate-50 px-2 rounded-sm shadow">
+            {msg}
+        </span>
+    );
+
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="grid grid-cols-2 gap-4 mx-auto h-fit p-5 rounded-lg bg-slate-50"
+            className="flex flex-col gap-2 mx-auto w-full max-w-md h-fit p-5 rounded-lg bg-slate-50 text-xs sm:text-sm"
         >
-            <h1 className="col-span-3 text-sky-900 text-lg font-semibold mx-auto">
+            <h1 className="col-span-3 text-sky-900 text-md sm:text-lg font-semibold mx-auto">
                 Registro de paciente
             </h1>
 
@@ -72,13 +78,9 @@ const Form = () => {
                 </label>
                 <input
                     {...register("nombres", { required: true })}
-                    className="w-80 px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
+                    className="w-full px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
                 />
-                {errors.nombres && (
-                    <span className="absolute top-0 right-0 text-red-500">
-                        Ingrese un nombre
-                    </span>
-                )}
+                {errors.nombres && errorMsg("Ingrese un nombre")}
             </div>
 
             <div className="flex flex-col gap-1 font-medium relative">
@@ -87,13 +89,10 @@ const Form = () => {
                 </label>
                 <input
                     {...register("apellidoPaterno", { required: true })}
-                    className="w-80 px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
+                    className="w-full px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
                 />
-                {errors.apellidoPaterno && (
-                    <span className="absolute top-0 right-0 text-red-500">
-                        Ingrese un apellido paterno
-                    </span>
-                )}
+                {errors.apellidoPaterno &&
+                    errorMsg("Ingrese un apellido paterno")}
             </div>
 
             <div className="flex flex-col gap-1 font-medium relative">
@@ -102,13 +101,10 @@ const Form = () => {
                 </label>
                 <input
                     {...register("apellidoMaterno", { required: true })}
-                    className="w-80 px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
+                    className="w-full px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
                 />
-                {errors.apellidoMaterno && (
-                    <span className="absolute top-0 right-0 text-red-500">
-                        Ingrese un apellido materno
-                    </span>
-                )}
+                {errors.apellidoMaterno &&
+                    errorMsg("Ingrese un apellido materno")}
             </div>
 
             <div className="flex flex-col gap-1 font-medium relative">
@@ -117,13 +113,9 @@ const Form = () => {
                 </label>
                 <input
                     {...register("rut", { required: true })}
-                    className="w-80 px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
+                    className="w-full px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
                 />
-                {errors.rut && (
-                    <span className="absolute top-0 right-0 text-red-500">
-                        Ingrese un RUT valido
-                    </span>
-                )}
+                {errors.rut && errorMsg("Ingrese un RUT valido")}
             </div>
 
             <div className="flex flex-col gap-1 font-medium relative">
@@ -133,13 +125,9 @@ const Form = () => {
                 <input
                     type="number"
                     {...register("codigoPostal", { required: true })}
-                    className="w-80 px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
+                    className="w-full px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
                 />
-                {errors.codigoPostal && (
-                    <span className="absolute top-0 right-0 text-red-500">
-                        Ingrese un código postal
-                    </span>
-                )}
+                {errors.codigoPostal && errorMsg("Ingrese un código postal")}
             </div>
 
             <div className="flex flex-col gap-1 font-medium">
@@ -153,7 +141,7 @@ const Form = () => {
                         resetField("comuna");
                         return setRegion(e.target.value);
                     }}
-                    className="w-80 px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
+                    className="w-full px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
                     autoComplete="new-region"
                 >
                     {sortRegiones().map((reg) => (
@@ -162,7 +150,7 @@ const Form = () => {
                         </option>
                     ))}
                 </select>
-                {errors.region && <span>Debe seleccionar una region</span>}
+                {errors.region && errorMsg("Debe seleccionar una region")}
             </div>
 
             <div className="flex flex-col gap-1 font-medium relative">
@@ -172,16 +160,12 @@ const Form = () => {
 
                 <select
                     {...register("comuna", { required: true })}
-                    className="w-80 px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500 transition ease-in-out"
+                    className="w-full px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500 transition ease-in-out"
                     autoComplete="new-comuna"
                 >
                     {sortComunas()}
                 </select>
-                {errors.comuna && (
-                    <span className="absolute top-0 right-0 text-red-500">
-                        Debe seleccionar una comuna
-                    </span>
-                )}
+                {errors.comuna && errorMsg("Debe seleccionar una comuna")}
             </div>
 
             {/* errors will return when field validation fails  */}
