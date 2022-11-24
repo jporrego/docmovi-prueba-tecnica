@@ -10,7 +10,7 @@ const PatientsList = () => {
 
     return (
         <div className="flex flex-col gap-2 mx-auto w-full max-w-3xl min-h-max p-5 rounded-lg bg-slate-50 text-xs sm:text-sm">
-            <div className="grid grid-cols-7 gap-5 px-2 rounded-md items-center">
+            <div className="grid grid-cols-7 gap-5 px-2 rounded-md items-center font-medium">
                 <div>Nombres</div>
                 <div>Ap. Paterno</div>
                 <div>Ap. Materno</div>
