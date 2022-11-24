@@ -37,7 +37,7 @@ const Form = () => {
     const onSubmit = (data) => {
         data.createdAt = new Date();
         PatientsCollection.insert(data);
-        //reset();
+        reset();
     };
 
     const [region, setRegion] = useState("Arica y Parinacota");
