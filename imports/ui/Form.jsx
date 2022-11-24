@@ -34,11 +34,8 @@ const Form = () => {
         resolver: yupResolver(schema),
     });
 
-    const onSubmit = (data) => {
-        data.createdAt = new Date();
-        PatientsCollection.insert(data);
-        reset();
-    };
+    const [warningMsg, setWarningMsg] = useState("");
+    const [sucessMsg, setSuccessMsg] = useState("");
 
     const [region, setRegion] = useState("Arica y Parinacota");
 
@@ -67,10 +64,32 @@ const Form = () => {
         </span>
     );
 
+    const showWarning = (msg) => {
+        setWarningMsg(msg);
+        setTimeout(() => setWarningMsg(""), 3000);
+    };
+
+    const showSuccess = (msg) => {
+        setSuccessMsg(msg);
+        setTimeout(() => setSuccessMsg(""), 3000);
+    };
+
+    const onSubmit = (data) => {
+        data.createdAt = new Date();
+        const existingPatient = PatientsCollection.findOne({ rut: data.rut });
+        if (existingPatient === undefined) {
+            PatientsCollection.insert(data);
+            showSuccess("Paciente registrado");
+            reset();
+        } else {
+            showWarning("Ya existe un paciente con ese RUT");
+        }
+    };
+
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-2 mx-auto w-full max-w-md h-fit p-5 rounded-lg bg-slate-50 text-xs sm:text-sm"
+            className="flex flex-col gap-2 mx-auto w-full max-w-md h-fit p-5 rounded-lg bg-slate-50 text-xs sm:text-sm relative"
         >
             <h1 className="col-span-3 text-sky-900 text-md sm:text-lg font-semibold mx-auto">
                 Registro de paciente
@@ -120,6 +139,9 @@ const Form = () => {
                     className="w-full px-3 py-1 bg-slate-100 rounded-md outline outline-1 outline-slate-300 hover:outline-sky-500 focus:outline-sky-500"
                 />
                 {errors.rut && errorMsg("Ingrese un RUT valido")}
+                <div className="absolute top-0 right-0 text-red-500 bg-slate-50 px-2 rounded-sm shadow">
+                    {warningMsg}
+                </div>
             </div>
 
             <div className="flex flex-col gap-1 font-medium relative">
@@ -175,9 +197,13 @@ const Form = () => {
             {/* errors will return when field validation fails  */}
             {errors.exampleRequired && <span>This field is required</span>}
             <input
+                value="Registar"
                 type="submit"
-                className="col-span-3 bg-sky-500 w-fit mx-auto px-4 py-1 rounded-md text-sky-50 font-medium hover:bg-sky-500  cursor-pointer transition duration-100"
+                className="col-span-3 bg-sky-500 w-fit mx-auto px-4 py-1 rounded-md text-sky-50 font-medium hover:bg-sky-500  cursor-pointer transition duration-100 mb-3 mt-2"
             />
+            <span className="absolute bottom-2 left-5 text-sky-500 bg-slate-50 px-2 font-medium">
+                {sucessMsg}
+            </span>
         </form>
     );
 };
