@@ -5,6 +5,8 @@ import { validateRut } from "rutlib";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import { PatientsCollection } from "/imports/api/PatientsCollection";
+
 const schema = yup
     .object({
         nombres: yup.string().required(),
@@ -33,7 +35,9 @@ const Form = () => {
     });
 
     const onSubmit = (data) => {
-        console.log(data), reset();
+        data.createdAt = new Date();
+        PatientsCollection.insert(data);
+        //reset();
     };
 
     const [region, setRegion] = useState("Arica y Parinacota");

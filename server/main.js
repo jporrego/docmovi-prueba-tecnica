@@ -23,6 +23,17 @@ Meteor.startup(async () => {
                 codigoPostal: 7850000,
                 region: "Región Metropolitana de Santiago",
                 comuna: "La Reina",
+                createdAt: new Date(),
+            },
+            {
+                nombres: "Rodolfo  ",
+                apellidoPaterno: "Arce",
+                apellidoMaterno: "Galvez",
+                rut: "16356304-5",
+                codigoPostal: 7750000,
+                region: "Región Metropolitana de Santiago",
+                comuna: "Ñuñoa",
+                createdAt: new Date(),
             },
         ].forEach(insertPatient);
     }
