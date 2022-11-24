@@ -8,11 +8,9 @@ export const App = () => {
     const tasks = useTracker(() => TasksCollection.find({}).fetch());
 
     return (
-        <div className="flex items-center p-6 bg-sky-600 h-screen font-sans">
-            {/* <ul>
-          { tasks.map(task => <Task key={ task._id } task={ task }/>) }
-        </ul> */}
+        <div className="flex flex-col gap-6 items-center p-6 bg-sky-600 min-h-screen font-sans">
             <Form></Form>
+            <div className=" p-6 bg-slate-200 font-sans h-96">131231</div>
         </div>
     );
 };
