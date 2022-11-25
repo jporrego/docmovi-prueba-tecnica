@@ -197,7 +197,7 @@ export const Form = () => {
             <input
                 value="Registar"
                 type="submit"
-                className="col-span-3 bg-sky-500 w-fit mx-auto px-4 py-1 rounded-md text-sky-50 font-medium hover:bg-sky-500  cursor-pointer transition duration-100 mb-3 mt-2"
+                className="col-span-3 bg-sky-500 w-fit mx-auto px-4 py-1 rounded-md text-sky-50 font-medium hover:bg-blue-500  cursor-pointer transition duration-100 mb-3 mt-2"
             />
             <span className="absolute bottom-2 left-5 text-sky-500 bg-slate-50 px-2 font-medium">
                 {sucessMsg}
