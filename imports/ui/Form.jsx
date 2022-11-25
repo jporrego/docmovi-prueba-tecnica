@@ -28,7 +28,6 @@ const Form = () => {
         handleSubmit,
         reset,
         resetField,
-        setError,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(schema),
@@ -194,8 +193,6 @@ const Form = () => {
                 {errors.comuna && errorMsg("Debe seleccionar una comuna")}
             </div>
 
-            {/* errors will return when field validation fails  */}
-            {errors.exampleRequired && <span>This field is required</span>}
             <input
                 value="Registar"
                 type="submit"

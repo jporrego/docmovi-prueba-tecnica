@@ -8,9 +8,11 @@ const PatientsList = () => {
         PatientsCollection.find({}, { sort: { createdAt: -1 } }).fetch()
     );
 
+    const deletePatient = ({ _id }) => PatientsCollection.remove(_id);
+
     return (
-        <div className="flex flex-col gap-2 mx-auto w-full max-w-3xl min-h-max p-5 rounded-lg bg-slate-50 text-xs sm:text-sm">
-            <div className="grid grid-cols-7 gap-5 px-2 rounded-md items-center font-medium">
+        <div className="flex flex-col gap-2 mx-auto w-full max-w-7xl min-h-max p-5 rounded-lg bg-slate-50 text-xs sm:text-sm">
+            <div className="grid grid-cols-8 gap-5 px-2 rounded-md items-center font-medium">
                 <div>Nombres</div>
                 <div>Ap. Paterno</div>
                 <div>Ap. Materno</div>
@@ -21,14 +23,9 @@ const PatientsList = () => {
             </div>
             {patients.map((patient) => (
                 <PatientCard
-                    nombres={patient.nombres}
-                    apellidoPaterno={patient.apellidoPaterno}
-                    apellidoMaterno={patient.apellidoMaterno}
-                    rut={patient.rut}
-                    codigoPostal={patient.codigoPostal}
-                    region={patient.region}
-                    comuna={patient.comuna}
-                    key={patient.rut}
+                    key={patient._id}
+                    patient={patient}
+                    onDeleteClick={deletePatient}
                 ></PatientCard>
             ))}
         </div>
