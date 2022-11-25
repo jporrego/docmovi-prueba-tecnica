@@ -75,6 +75,7 @@ export const Form = () => {
 
     const onSubmit = (data) => {
         data.createdAt = new Date();
+
         const existingPatient = PatientsCollection.findOne({ rut: data.rut });
         if (existingPatient === undefined) {
             PatientsCollection.insert(data);

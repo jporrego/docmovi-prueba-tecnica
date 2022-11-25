@@ -10,7 +10,7 @@ const insertPatient = (data) =>
         codigoPostal: data.codigoPostal,
         region: data.region,
         comuna: data.comuna,
-        createdAt: new Date(),
+        createdAt: data.createdAt,
     });
 
 Meteor.startup(async () => {
@@ -24,6 +24,7 @@ Meteor.startup(async () => {
                 codigoPostal: 7850000,
                 region: "Región Metropolitana de Santiago",
                 comuna: "La Reina",
+                createdAt: new Date(),
             },
             {
                 nombres: "Rodolfo  ",
@@ -33,6 +34,7 @@ Meteor.startup(async () => {
                 codigoPostal: 7750000,
                 region: "Región Metropolitana de Santiago",
                 comuna: "Ñuñoa",
+                createdAt: new Date(),
             },
         ].forEach(insertPatient);
     }
