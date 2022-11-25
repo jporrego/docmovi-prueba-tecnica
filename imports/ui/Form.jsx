@@ -22,7 +22,7 @@ const schema = yup
     })
     .required();
 
-const Form = () => {
+export const Form = () => {
     const {
         register,
         handleSubmit,
@@ -204,5 +204,3 @@ const Form = () => {
         </form>
     );
 };
-
-export default Form;

@@ -1,7 +1,7 @@
 import React from "react";
 import { formatRut } from "rutlib";
 
-const PatientCard = ({ patient, onDeleteClick }) => {
+export const PatientCard = ({ patient, onDeleteClick }) => {
     return (
         <div className="grid grid-cols-8 gap-5 bg-slate-200 px-2 py-2 rounded-md h-fit">
             <div className="flex items-center">{patient.nombres}</div>
@@ -22,5 +22,3 @@ const PatientCard = ({ patient, onDeleteClick }) => {
         </div>
     );
 };
-
-export default PatientCard;

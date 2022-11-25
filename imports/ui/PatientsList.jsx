@@ -1,9 +1,9 @@
 import React from "react";
-import PatientCard from "./PatientCard";
+import { PatientCard } from "./PatientCard";
 import { PatientsCollection } from "/imports/api/PatientsCollection";
 import { useTracker } from "meteor/react-meteor-data";
 
-const PatientsList = () => {
+export const PatientsList = () => {
     const patients = useTracker(() =>
         PatientsCollection.find({}, { sort: { createdAt: -1 } }).fetch()
     );
@@ -31,5 +31,3 @@ const PatientsList = () => {
         </div>
     );
 };
-
-export default PatientsList;
