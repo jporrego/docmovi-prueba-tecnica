@@ -1,6 +1,6 @@
 # Docmovi Prueba Técnica - Juan Pablo Orrego C.
 
--   [Live Site](https://docmovi-prueba.meteorapp.com/) Hosteado en Galaxy
+-   [Live Site](https://docmovi-prueba.meteorapp.com/) - Hosteado en Galaxy
 -   `meteor run` para ejecutar el proyecto localmente
 
 ### Explicación del ejercicio
