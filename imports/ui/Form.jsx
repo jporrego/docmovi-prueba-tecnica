@@ -4,6 +4,7 @@ import { regiones } from "./regiones";
 import { validateRut } from "rutlib";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { formatRut } from "rutlib";
 
 import { PatientsCollection } from "/imports/api/PatientsCollection";
 
@@ -75,6 +76,7 @@ export const Form = () => {
 
     const onSubmit = (data) => {
         data.createdAt = new Date();
+        data.rut = formatRut(data.rut, false);
 
         const existingPatient = PatientsCollection.findOne({ rut: data.rut });
         if (existingPatient === undefined) {
