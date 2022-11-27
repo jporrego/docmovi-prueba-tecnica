@@ -1,6 +1,10 @@
 import React from "react";
 import { formatRut } from "rutlib";
 
+/**
+ * Displays patient data and allows deletion.
+ * Takes a patient object and an onDeleteClick function.
+ */
 export const PatientCard = ({ patient, onDeleteClick }) => {
     return (
         <div className="grid grid-cols-8 gap-5 bg-slate-200 px-2 py-2 rounded-md h-fit">

@@ -3,6 +3,11 @@ import { PatientCard } from "./PatientCard";
 import { PatientsCollection } from "/imports/api/PatientsCollection";
 import { useTracker } from "meteor/react-meteor-data";
 
+/**
+ * Display all existing patients.
+ * Tracks PatientCollection and generates a PatientCard for each patient.
+ * Defines deletePatient function.
+ */
 export const PatientsList = () => {
     const patients = useTracker(() =>
         PatientsCollection.find({}, { sort: { createdAt: -1 } }).fetch()

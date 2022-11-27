@@ -8,6 +8,7 @@ import { formatRut } from "rutlib";
 
 import { PatientsCollection } from "/imports/api/PatientsCollection";
 
+/** Yup used as a second layer of validation, and to implement RUT validation with RUTlib. */
 const schema = yup
     .object({
         nombres: yup.string().required(),
@@ -23,6 +24,10 @@ const schema = yup
     })
     .required();
 
+/**
+ * Patient registration form. Takes inputs, validates them and the handles the data submission.
+ */
+
 export const Form = () => {
     const {
         register,
@@ -34,11 +39,14 @@ export const Form = () => {
         resolver: yupResolver(schema),
     });
 
+    /* States used to display warning and success messages. */
     const [warningMsg, setWarningMsg] = useState("");
     const [sucessMsg, setSuccessMsg] = useState("");
 
+    /* Region state used for getting the corresponding Comunas. */
     const [region, setRegion] = useState("Arica y Parinacota");
 
+    /* Sorts Regiones alphabetically */
     const sortRegiones = () => {
         let sortedReg = regiones.sort((a, b) =>
             a.region.localeCompare(b.region)
@@ -47,6 +55,10 @@ export const Form = () => {
         return sortedReg;
     };
 
+    /* 
+    Finds the comunas that match the selected region, sorts them 
+    and then returns an option element for each one.
+    */
     const sortComunas = () => {
         let comunas = regiones.find((reg) => reg.region === region).comunas;
         comunas.sort((a, b) => a.localeCompare(b));
@@ -58,22 +70,30 @@ export const Form = () => {
         ));
     };
 
+    /* Error message element */
     const errorMsg = (msg) => (
         <span className="absolute top-0 right-0 text-red-500 bg-slate-50 px-2 rounded-sm shadow">
             {msg}
         </span>
     );
 
+    /* sets warning message and a timeout to clean it up after x seconds */
     const showWarning = (msg) => {
         setWarningMsg(msg);
         setTimeout(() => setWarningMsg(""), 3000);
     };
 
+    /* sets success message and a timeout to clean it up after x seconds */
     const showSuccess = (msg) => {
         setSuccessMsg(msg);
         setTimeout(() => setSuccessMsg(""), 3000);
     };
 
+    /*
+     * Sets data.createdAt date and formats data.rut
+     * If theres a patient with that rut, call showWarning
+     * Else inserts the new patient, shows success message and resets the form.
+     */
     const onSubmit = (data) => {
         data.createdAt = new Date();
         data.rut = formatRut(data.rut, false);
